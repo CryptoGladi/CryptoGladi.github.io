@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+
+// Собираем все теги и считаем количество статей
+const tagCounts = new Map<string, number>();
+posts.forEach(post => {
+  post.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// Сортируем теги по алфавиту
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+<BaseLayout title="Теги | Блог" description="Все теги блога">
+  <h2 class="page-title">Теги</h2>
+  <div class="tags-cloud">
+    {sortedTags.map(([tag, count]) => (
+      <a href={`/tags/${tag}`} class="tag-item">
+        <span class="tag-name">#{tag}</span>
+        <span class="tag-count">{count}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .page-title { color: var(--text); margin-bottom: 1.5rem; font-size: 1.5rem; }
+  
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .tag-item:hover {
+    background: var(--nord10);
+    border-color: var(--nord9);
+    transform: translateY(-2px);
+  }
+  
+  .tag-name {
+    color: var(--nord9);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .tag-count {
+    background: var(--nord2);
+    color: var(--nord6);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .tag-item:hover .tag-name { color: var(--nord6); }
+  .tag-item:hover .tag-count { background: var(--nord3); }
+</style>

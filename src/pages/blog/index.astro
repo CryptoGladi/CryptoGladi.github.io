@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Все статьи | Блог" description="Архив публикаций">
+  <h2 class="page-title">Все публикации</h2>
+  <ul class="post-list">
+    {posts.map(post => (
+      <li>
+        <a href={`/blog/${post.id}`}>
+          <strong>{post.data.title}</strong>
+        </a>
+        {post.data.description && <p>{post.data.description}</p>}
+        
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="tags">
+            {post.data.tags.map(tag => (
+              <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+            ))}
+          </div>
+        )}
+        
+        <small>{post.data.date.toLocaleDateString('ru-RU')}</small>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+
+<style>
+  .page-title { color: var(--text); margin-bottom: 1.5rem; font-size: 1.5rem; }
+  ul.post-list { list-style: none; padding: 0; margin: 0; }
+  li {
+    margin: 1.25rem 0;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  li:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  li a {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  li a:hover { color: var(--accent-hover); text-decoration: underline; }
+  li p { margin: 0.25rem 0 0.5rem; color: var(--text-muted); line-height: 1.5; }
+  li small { color: var(--nord8); font-weight: 500; font-size: 0.85rem; display: block; margin-top: 0.5rem; }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: var(--nord1);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--nord9);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    background: var(--nord10);
+    border-color: var(--nord9);
+    color: var(--nord6);
+  }
+</style>

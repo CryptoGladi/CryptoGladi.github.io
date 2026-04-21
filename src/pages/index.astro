@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Добро пожаловать | Блог разработчика" description="Статьи о Rust, алгоритмах и системном программировании">
+  <main class="hero">
+    <h1 class="hero-title">
+      Привет, я <span class="accent">CryptoGladi</span>
+    </h1>
+    <p class="hero-subtitle">
+      Пишу полезные библиотеки, потихоньку иду в науку и делюсь опытом в системном программировании. 
+      Здесь вы найдёте технические статьи, заметки и примеры кода.
+    </p>
+    
+    <div class="hero-actions">
+      <a href="/blog" class="btn btn-primary">📖 Читать блог</a>
+      <a href="/tags" class="btn btn-secondary">🏷️ Все теги</a>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/CryptoGladi" target="_blank" rel="noopener noreferrer" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.226.694.825.577C20.566 21.797 24 17.294 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+      
+      <a href="https://t.me/Gladi8400" target="_blank" rel="noopener noreferrer" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.293-.605.293l.215-3.053 5.56-5.022c.242-.215-.054-.335-.373-.124l-6.869 4.326-2.96-.924c-.642-.203-.658-.642.135-.955l11.566-4.458c.538-.193 1.008.13.831.952z"/>
+        </svg>
+        Telegram
+      </a>
+    </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .accent {
+    color: var(--nord8);
+    font-weight: 600;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--nord10);
+    color: var(--nord6);
+    border-color: var(--nord9);
+  }
+  .btn-primary:hover {
+    background: var(--nord9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(94, 129, 172, 0.3);
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--nord9);
+    border-color: var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--nord8);
+    color: var(--nord6);
+    background: var(--nord2);
+  }
+
+  .hero-focus {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .focus-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .focus-icon { font-size: 1.8rem; }
+  .focus-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .hero-focus { gap: 1.5rem; }
+  }
+
+   .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--nord8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.2s;
+  }
+  
+  .social-link svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
+    display: block;          
+    vertical-align: middle;  
+  }
+
+  .social-link:hover { color: var(--nord6); transform: translateY(-1px); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1rem; }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1.05rem; }
+    .hero-focus, .social-links { gap: 1.5rem; }
+  }
+</style>

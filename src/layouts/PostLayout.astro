@@ -1,0 +1,67 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props { 
+  title: string; 
+  date: Date; 
+  description?: string; 
+  tags: string[]; 
+  readingTime: string;
+}
+
+const { title, date, description, tags = [], readingTime } = Astro.props;
+const formatted = date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="post-header">
+      <div class="meta-line">
+        <time datetime={date.toISOString()}>{formatted}</time>
+        <span class="separator">•</span>
+        <span class="reading-time">📖 {readingTime}</span>
+      </div>
+      <h1>{title}</h1>
+      {description && <p class="lead">{description}</p>}
+      
+      {tags.length > 0 && (
+        <div class="tags">
+          {tags.map(tag => (
+            <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+          ))}
+        </div>
+      )}
+    </header>
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header { margin: 2rem 0 1.5rem; }
+  
+  .meta-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--nord8);
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .separator { color: var(--nord4); font-size: 1.2rem; line-height: 1; }
+  .reading-time { display: inline-flex; align-items: center; gap: 0.25rem; }
+
+  /* Остальные стили оставляем без изменений */
+  .post-header h1 { margin: 0.5rem 0; font-size: 2rem; line-height: 1.2; color: var(--text); }
+  .lead { color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .tag {
+    display: inline-block; padding: 0.25rem 0.75rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; color: var(--nord9); font-size: 0.85rem;
+    font-weight: 500; text-decoration: none; transition: all 0.2s;
+  }
+  .tag:hover { background: var(--nord10); border-color: var(--nord9); color: var(--nord6); transform: translateY(-1px); }
+  /* ... ваши стили для .post-content ... */
+</style>
