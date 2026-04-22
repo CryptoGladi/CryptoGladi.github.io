@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
     posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
     return rss({
-        title: 'Блог CryptoGladi',
+        title: 'CryptoGladi Blog',
         description: 'Algorithm + Science + Rust 🦀',
         site: 'https://cryptogladi.github.io',
         items: posts.map(post => ({

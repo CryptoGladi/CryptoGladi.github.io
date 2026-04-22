@@ -5,7 +5,6 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   
-  // Собираем все уникальные теги
   const allTags = new Set<string>();
   posts.forEach(post => {
     post.data.tags?.forEach(tag => allTags.add(tag));
@@ -23,11 +22,11 @@ const filteredPosts = posts
   .filter(post => post.data.tags?.includes(tag!))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title={`Тег: ${tag} | Блог`} description={`Статьи с тегом ${tag}`}>
+<BaseLayout title={`Tag: ${tag}`} description={`Articles tagged ${tag}`}>
   <div class="tag-header">
     <a href="/tags" class="back-link">← Все теги</a>
     <h2 class="page-title">#{tag}</h2>
-    <p class="count">Найдено статей: {filteredPosts.length}</p>
+    <p class="count">Founded articles: {filteredPosts.length}</p>
   </div>
   
   {filteredPosts.length > 0 ? (
@@ -43,7 +42,7 @@ const filteredPosts = posts
       ))}
     </ul>
   ) : (
-    <p class="no-posts">Статей с этим тегом пока нет.</p>
+    <p class="no-posts">There are no articles with this tag yet.</p>
   )}
 </BaseLayout>
 

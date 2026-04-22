@@ -15,8 +15,8 @@ posts.forEach(post => {
 // Сортируем теги по алфавиту
 const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 ---
-<BaseLayout title="Теги | Блог" description="Все теги блога">
-  <h2 class="page-title">Теги</h2>
+<BaseLayout title="CryptoGladi Blog. Tags" description="All tags from blog">
+  <h2 class="page-title">Tags</h2>
   <div class="tags-cloud">
     {sortedTags.map(([tag, count]) => (
       <a href={`/tags/${tag}`} class="tag-item">

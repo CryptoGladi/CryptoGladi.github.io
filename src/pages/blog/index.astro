@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog');
 posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="Все статьи | Блог" description="Архив публикаций">
-  <h2 class="page-title">Все публикации</h2>
+<BaseLayout title="CryptoGladi Blog. Articles" description="Archive of publications">
+  <h2 class="page-title">All publications</h2>
   <ul class="post-list">
     {posts.map(post => (
       <li>

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, date, description, tags = [], readingTime } = Astro.props;
-const formatted = date.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+const formatted = date.toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 <BaseLayout title={title} description={description}>
   <article>

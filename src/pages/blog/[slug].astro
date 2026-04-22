@@ -6,7 +6,7 @@ const getReadingTime = (content: string): string => {
   const wordsPerMinute = 200;
   const words = content.trim().split(/\s+/).filter(Boolean).length;
   const minutes = Math.ceil(words / wordsPerMinute);
-  return `${Math.max(1, minutes)} мин.`;
+  return `${Math.max(1, minutes)} min.`;
 };
 
 export async function getStaticPaths() {

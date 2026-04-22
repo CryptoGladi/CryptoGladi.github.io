@@ -1,6 +1,6 @@
 ---
 interface Props { title: string; description?: string }
-const { title, description = "Блог разработчика на Rust" } = Astro.props;
+const { title, description } = Astro.props;
 ---
 <!doctype html>
 <html lang="ru">
@@ -18,9 +18,9 @@ const { title, description = "Блог разработчика на Rust" } = A
   <body>
     <header class="container">
       <nav>
-          <a href="/">🏠 Главная</a> | 
-          <a href="/blog">📝 Блог</a> | 
-          <a href="/tags">🏷️ Теги</a> |
+          <a href="/">🏠 Main</a> | 
+          <a href="/blog">📝 Blog</a> | 
+          <a href="/tags">🏷️ Tags</a> |
           <a href="/rss.xml" target="_blank" rel="noopener">📡 RSS</a>
       </nav>
     </header>
