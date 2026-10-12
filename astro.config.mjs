@@ -3,6 +3,7 @@
 import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkCallout from '@r4ai/remark-callout';
 
 export default defineConfig({
     site: 'https://cryptogladi.github.io',
@@ -12,7 +13,7 @@ export default defineConfig({
             themes: { dark: 'nord' },
             defaultColor: 'dark',
         },
-        remarkPlugins: [remarkMath],
+        remarkPlugins: [remarkMath, remarkCallout],
         rehypePlugins: [rehypeKatex],
     },
 });

@@ -12,10 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.2",
     "@astrojs/rss": "^4.0.18",
-    "astro": "^6.1.8",
-    "katex": "^0.16.45",
-    "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "@r4ai/remark-callout": "^0.6.2",
+    "astro": "^7.3.8",
+    "katex": "^0.19.0",
+    "rehype-katex": "^1.2.0",
+    "remark-math": "^3.0.1"
   }
 }
