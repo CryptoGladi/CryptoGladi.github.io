@@ -488,7 +488,7 @@ std::println("{}\n", result);
 Рассмотрим демонстрацию автоматического выбора стратегии выделения памяти:
 
 ```cpp
-// Листинг 6. Демонстрация Policy-Based Design
+// 6. Демонстрация Policy-Based Design
 Matrix3x3<int> small_matrix;
 Matrix<int, 100, 100> big_matrix;
 Matrix<int, 100, 100, storage_policy::StackStorage> custom_matrix;
